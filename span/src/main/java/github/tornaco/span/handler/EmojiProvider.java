@@ -26,6 +26,14 @@ public interface EmojiProvider {
             this.code = code;
         }
 
+        public int getRes() {
+            return res;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
         public static float defaultSize(TextView textView) {
             final Paint.FontMetrics fontMetrics = textView.getPaint().getFontMetrics();
             return fontMetrics.descent - fontMetrics.ascent;
