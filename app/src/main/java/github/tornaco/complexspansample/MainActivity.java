@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public Emoji getFromEmojiString(@NonNull String emojiString) {
-                return new Emoji(R.drawable.d_hehe, Emoji.defaultSize(textView));
+                return new Emoji(R.drawable.d_hehe, emojiString);
             }
         }, SOURCE_1));
     }

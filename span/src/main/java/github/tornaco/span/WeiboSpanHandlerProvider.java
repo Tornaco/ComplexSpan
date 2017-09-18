@@ -21,10 +21,12 @@ public abstract class WeiboSpanHandlerProvider implements SpanHandlerProvider,
         AtHandler.OnATClickListener, EmojiProvider {
 
     private Context context;
+    private float emojiSize;
 
     public WeiboSpanHandlerProvider(Context context, TextView textView) {
         textView.setMovementMethod(ClickableMovementMethod.getInstance());
         this.context = context;
+        this.emojiSize = Emoji.defaultSize(textView);
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public abstract class WeiboSpanHandlerProvider implements SpanHandlerProvider,
                 new UrlHandler(this),
                 new TopicHandler(this),
                 new AtHandler(this),
-                new WeiboEmojiHandler(context, this),
+                new WeiboEmojiHandler(context, this, emojiSize),
         };
     }
 }

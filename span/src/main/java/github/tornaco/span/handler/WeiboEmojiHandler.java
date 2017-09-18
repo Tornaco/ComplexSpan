@@ -21,10 +21,12 @@ public class WeiboEmojiHandler implements SpanHandler {
 
     private EmojiProvider emojiProvider;
     private Context context;
+    private float emojiSize;
 
-    public WeiboEmojiHandler(Context context, EmojiProvider emojiProvider) {
+    public WeiboEmojiHandler(Context context, EmojiProvider emojiProvider, float emojiSize) {
         this.emojiProvider = emojiProvider;
         this.context = context;
+        this.emojiSize = emojiSize;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class WeiboEmojiHandler implements SpanHandler {
 
             EmojiProvider.Emoji emoji = emojiProvider.getFromEmojiString(em);
             if (emoji != null) {
-                ssb.setSpan(new EmojiSpan(this.context, emoji.res, emoji.size),
+                ssb.setSpan(new EmojiSpan(this.context, emoji.res, emojiSize),
                         startIndex, startIndex + length,
                         Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             }

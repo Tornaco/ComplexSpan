@@ -18,23 +18,12 @@ public interface EmojiProvider {
 
         @DrawableRes
         int res;
-        float size;
 
-        public Emoji(int res, float size) {
+        String code;
+
+        public Emoji(int res, String code) {
             this.res = res;
-            this.size = size;
-        }
-
-        public Emoji(TextView textView, int res) {
-            this(res, defaultSize(textView));
-        }
-
-        public int getRes() {
-            return res;
-        }
-
-        public float getSize() {
-            return size;
+            this.code = code;
         }
 
         public static float defaultSize(TextView textView) {
