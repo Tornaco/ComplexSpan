@@ -1,6 +1,7 @@
 package github.tornaco.span;
 
 import android.text.SpannableStringBuilder;
+import android.widget.TextView;
 
 /**
  * Created by guohao4 on 2017/9/18.
@@ -9,18 +10,24 @@ import android.text.SpannableStringBuilder;
 
 public class ComplexSpan {
 
-    public static SpannableStringBuilder apply(CharSequence content, SpanHandler... handlers) {
+    public static void apply(TextView textView,
+                             CharSequence content,
+                             SpanHandler... handlers) {
         SpannableStringBuilder ssb = new SpannableStringBuilder(content);
         for (SpanHandler h : handlers) {
-            h.handle(content, ssb);
+            h.handle(textView, content, ssb);
         }
-        return ssb;
+        // Apply MM.
+        textView.setMovementMethod(ClickableMovementMethod.getInstance());
+        textView.setText(ssb);
     }
 
-    public static SpannableStringBuilder apply(
-            SpanHandlerProvider spanHandlerProvider, CharSequence content) {
+    public static void apply(
+            TextView textView,
+            SpanHandlerProvider spanHandlerProvider,
+            CharSequence content) {
         if (spanHandlerProvider == null)
             throw new IllegalArgumentException("SpanHandlerProvider can not be null");
-        return apply(content, spanHandlerProvider.getSpanHandler());
+        apply(textView, content, spanHandlerProvider.getSpanHandler());
     }
 }

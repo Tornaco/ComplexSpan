@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +32,7 @@ public class TopicHandler implements SpanHandler {
     }
 
     @Override
-    public void handle(@NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
+    public void handle(@NonNull TextView targetView, @NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
         Matcher matcher = TOPIC.matcher(sequence);
         while (matcher.find()) {
             final String top = matcher.group();

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final TextView textView = (TextView) findViewById(R.id.text);
-        textView.setText(ComplexSpan.apply(new WeiboSpanHandlerProvider(getApplicationContext(), textView) {
+        ComplexSpan.apply(textView, new WeiboSpanHandlerProvider() {
             @Override
             public void onTopicClick(String topic) {
                 Toast.makeText(getApplicationContext(), "onTopicClick:" + topic, Toast.LENGTH_SHORT).show();
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public Emoji getFromEmojiString(@NonNull String emojiString) {
                 return new Emoji(R.drawable.d_hehe, emojiString);
             }
-        }, SOURCE_1));
+        }, SOURCE_1);
     }
 
     @Override

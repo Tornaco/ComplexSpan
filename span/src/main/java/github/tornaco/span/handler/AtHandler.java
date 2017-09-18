@@ -3,8 +3,8 @@ package github.tornaco.span.handler;
 import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +32,7 @@ public class AtHandler implements SpanHandler {
     }
 
     @Override
-    public void handle(@NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
+    public void handle(@NonNull TextView targetView, @NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
         Matcher matcher = AT.matcher(sequence);
         while (matcher.find()) {
             final String who = matcher.group();

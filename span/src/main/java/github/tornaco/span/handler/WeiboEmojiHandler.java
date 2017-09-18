@@ -1,9 +1,9 @@
 package github.tornaco.span.handler;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,17 +20,13 @@ public class WeiboEmojiHandler implements SpanHandler {
     private static final Pattern EMOJI = Pattern.compile("\\[.*\\]");
 
     private EmojiProvider emojiProvider;
-    private Context context;
-    private float emojiSize;
 
-    public WeiboEmojiHandler(Context context, EmojiProvider emojiProvider, float emojiSize) {
+    public WeiboEmojiHandler(EmojiProvider emojiProvider) {
         this.emojiProvider = emojiProvider;
-        this.context = context;
-        this.emojiSize = emojiSize;
     }
 
     @Override
-    public void handle(@NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
+    public void handle(@NonNull TextView targetView, @NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
         Matcher matcher = EMOJI.matcher(sequence);
         while (matcher.find()) {
             final String em = matcher.group();
@@ -39,7 +35,8 @@ public class WeiboEmojiHandler implements SpanHandler {
 
             EmojiProvider.Emoji emoji = emojiProvider.getFromEmojiString(em);
             if (emoji != null) {
-                ssb.setSpan(new EmojiSpan(this.context, emoji.res, emojiSize),
+                ssb.setSpan(new EmojiSpan(targetView.getContext(), emoji.res,
+                                EmojiProvider.Emoji.defaultSize(targetView)),
                         startIndex, startIndex + length,
                         Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             }

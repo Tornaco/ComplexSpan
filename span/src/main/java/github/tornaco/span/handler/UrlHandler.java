@@ -5,6 +5,7 @@ import android.support.v4.util.PatternsCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +31,7 @@ public class UrlHandler implements SpanHandler {
     }
 
     @Override
-    public void handle(@NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
+    public void handle(@NonNull TextView textView, @NonNull CharSequence sequence, @NonNull SpannableStringBuilder ssb) {
         Pattern pattern = PatternsCompat.WEB_URL;
         Matcher matcher = pattern.matcher(sequence);
         while (matcher.find()) {
