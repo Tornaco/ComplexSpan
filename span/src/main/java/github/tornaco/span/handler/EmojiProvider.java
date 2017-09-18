@@ -1,7 +1,7 @@
 package github.tornaco.span.handler;
 
-import android.annotation.DrawableRes;
 import android.graphics.Paint;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
